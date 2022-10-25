@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreent()
+        '/': (context) => const HomeScreen()
       },
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

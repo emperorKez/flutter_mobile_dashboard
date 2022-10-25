@@ -24,7 +24,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           style: TextStyle(fontSize: 8),),
           badgeColor: Colors.amberAccent,
           shape: BadgeShape.square,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(3),
           child: Icon(Icons.notifications),
         ),
         SizedBox(width: 10,),

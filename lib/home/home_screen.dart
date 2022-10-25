@@ -1,15 +1,13 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'dart:html';
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_dashboard/widgets/header.dart';
 
 import 'components/drawer.dart';
+import 'components/order_chart.dart';
 
-class HomeScreent extends StatelessWidget {
-  const HomeScreent({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +20,8 @@ class HomeScreent extends StatelessWidget {
         physics: AlwaysScrollableScrollPhysics(),
         children: [
           topComponent(),
+          SizedBox(height: 20,),
+          OrderChart()
         ],
       ),
     );
