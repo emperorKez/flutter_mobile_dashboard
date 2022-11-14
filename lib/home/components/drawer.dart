@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_dashboard/product/add_product.dart';
+
+import '../../product/manage_products.dart';
+import '../../store_config/config_screen.dart';
 
 class HomeDrawer extends StatefulWidget {
-  HomeDrawer({super.key});
+  const HomeDrawer({super.key});
 
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  List isOpen = [];
+  bool isOpen = false;
+  bool expanded = false;
   int selectedTile = -1;
 
   @override
@@ -28,7 +33,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     maxRadius: 25,
                     child: Icon(Icons.person),
                   ),
-                  SizedBox(width: 10,),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -65,6 +72,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
             title: Text('Sales'),
             childrenPadding: EdgeInsets.all(10),
             leading: Icon(Icons.paid_rounded),
+            initiallyExpanded: isOpen,
+            onExpansionChanged: (expanded) {
+              setState(() {
+                isOpen = false;
+              });
+              isOpen = expanded;
+            },
             children: const [
               ListTile(
                 title: Text('Orders'),
@@ -92,19 +106,30 @@ class _HomeDrawerState extends State<HomeDrawer> {
             title: Text('Catalog'),
             childrenPadding: EdgeInsets.all(10),
             leading: Icon(Icons.category),
-            children: const [
+            initiallyExpanded: isOpen,
+            onExpansionChanged: (expanded) {
+              setState(() {
+                isOpen = false;
+              });
+              isOpen = expanded;
+            },
+            children:  [
+              ListTile(
+                title: Text('Add Products'),
+                leading: Icon(Icons.change_circle),
+                onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddProductScreen())),
+              ),
               ListTile(
                 title: Text('Manage Products'),
                 leading: Icon(Icons.change_circle),
+                onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ManageProductsScreen()))
               ),
               ListTile(
                 title: Text('Featured Products'),
                 leading: Icon(Icons.change_circle),
               ),
-              ListTile(
-                title: Text('Manage Ctegories'),
-                leading: Icon(Icons.change_circle),
-              )
             ],
           ),
 
@@ -112,6 +137,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
             title: Text('CMS'),
             childrenPadding: EdgeInsets.all(10),
             leading: Icon(Icons.create),
+            initiallyExpanded: isOpen,
+            onExpansionChanged: (expanded) {
+              setState(() {
+                isOpen = false;
+              });
+              isOpen = expanded;
+            },
             children: const [
               ListTile(
                 title: Text('Manage Pages'),
@@ -187,6 +219,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ListTile(
             title: Text('Configuration'),
             leading: Icon(Icons.settings),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => StoreConfigScreen())),
+          ),
+          ListTile(
+            title: Text('Logout'),
+            leading: Icon(Icons.logout_sharp),
           ),
         ],
       ),
